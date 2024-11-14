@@ -12,8 +12,8 @@
 
         const sample = angular.module('sample', []);
 
-        sample.controller('hello-controller', ["$scope", function (hello) {
-            hello.name = 'Astronaut';
+        sample.controller('user-controller', ["$scope", function (user) {
+            user.name = 'Astronaut';
         }]);
 
     </script>
@@ -21,7 +21,7 @@
 </head>
 <body ng-app="sample">
 
-    <div ng-controller="hello-controller">
+    <div ng-controller="user-controller">
         Hello, {{ name }}!
     </div>
     
