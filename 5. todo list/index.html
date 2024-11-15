@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Hello world, AngularJS</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+
+        const app = angular.module('app', []);
+
+        app.controller('todo-list-controller', ["$scope", function ($scope) {
+            $scope.todos = JSON.parse(localStorage.getItem('angular-todo-app-todos-list')) || [];
+
+            $scope.addTodo = function () {
+                if ($scope.todoInput) {
+                    $scope.todos.push({
+                        name: $scope.todoInput,
+                        checked: false
+                    });
+
+                    $scope.saveTodos();
+
+                    $scope.todoInput = '';
+                };
+            };
+
+            $scope.addTodoOnEnter = function (event) {
+                if (event.key == 'Enter') {
+                    $scope.addTodo();
+                };
+            };
+
+            $scope.checkTodo = function (todo) {
+                todo.checked = !todo.checked;
+                $scope.saveTodos();
+            };
+
+            $scope.deleteTodo = function (index) {
+                if (confirm(`Deletar ${$scope.todos[index].name}?`)) {
+                    $scope.todos.splice(index, 1);
+                    $scope.saveTodos();
+                };
+            };
+
+            $scope.saveTodos = function () {
+                localStorage.setItem('angular-todo-app-todos-list', JSON.stringify($scope.todos));
+            };
+        }]);
+
+    </script>
+
+</head>
+<body ng-app="app">
+
+    <div ng-controller="todo-list-controller">
+        <p ng-repeat="todo in todos track by $index" ng-style="{'color': todo.checked ? 'green' : 'black'}" style="cursor: pointer;">
+            <span ng-click="checkTodo(todo)">{{ todo }}</span>
+            <button ng-click="deleteTodo($index)">Delete</button>
+        </p>
+        <input type="text" ng-model="todoInput" ng-keypress="addTodoOnEnter($event)">
+        <button ng-click="addTodo()">Add to-do</button>
+    </div>
+    
+</body>
+</html>
