@@ -1,2 +1,3 @@
 Repo to study AngularJS.
-- Anael Jonas
+- Anael Jonas, Senior Full-Stack Developer
+- LinkedIn: https://www.linkedin.com/in/anaeljonas
