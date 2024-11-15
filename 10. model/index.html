@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Hello world, AngularJS</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+
+        const app = angular.module('app', [])
+
+        app.controller('math-controller', ['$scope', function ($scope) {
+            $scope.a = 10;
+            $scope.b = 20;
+            $scope.result = 0;
+
+            $scope.sum = function () {
+                $scope.result = $scope.a + $scope.b;
+            };
+
+            $scope.sum();
+        }]);
+
+    </script>
+
+</head>
+<body ng-app="app">
+
+    <div ng-controller="math-controller">
+        Value a: {{ a }}
+        <input type="number" placeholder="Value to a" ng-model="a" ng-change="sum()">
+        <br>
+
+        Value b: {{ b }}
+        <input type="number" placeholder="Value to b" ng-model="b" ng-change="sum()">
+        <br>
+
+        Result: {{ result }}
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Hello world, AngularJS</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+
+        const app = angular.module('app', [])
+
+        app.controller('user-controller', ['$scope', function ($scope) {
+            $scope.name = 'Astronaut';
+
+            $scope.changeName = function () {
+                $scope.name = 'Astronaut 2';
+            };
+        }]);
+
+    </script>
+
+</head>
+<body ng-app="app">
+
+    <div ng-controller="user-controller">
+        Hello, <span ng-bind="name"></span>
+        <br>
+        Your initial name was: {{ ::name }}
+        <br>
+        <button ng-click="changeName()">Change name</button>
+    </div>
+    
+</body>
+</html>
