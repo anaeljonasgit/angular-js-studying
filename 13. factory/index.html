@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Hello world, AngularJS</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+
+        const app = angular.module('app', []);
+
+        app.factory('math-factory', function () {
+            const math_operations_factory = {};
+
+            math_operations_factory.sum = function (a, b) {
+                return a + b;
+            };
+
+            return math_operations_factory;
+        });
+
+        app.controller('calc-controller', ['$scope', 'math-factory', function ($scope, math_operations_factory) {
+            $scope.a = 2;
+            $scope.b = 2;
+            $scope.result = 0;
+
+            $scope.calculate = function () {
+                $scope.result = math_operations_factory.sum($scope.a, $scope.b);
+            };
+
+            $scope.calculate();
+        }]);
+
+    </script>
+
+</head>
+<body ng-app="app">
+
+    <div ng-controller="calc-controller">
+        <input type="number" ng-model="a" placeholder="Value a" ng-change="calculate()">
+        <input type="number" ng-model="b" placeholder="Value b" ng-change="calculate()">
+        <p>Result: {{ result }}</p>
+    </div>
+    
+</body>
+</html>
