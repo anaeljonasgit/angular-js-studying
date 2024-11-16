@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Hello world, AngularJS</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+
+        const app = angular.module('app', [])
+
+        app.controller('pokemons-controller', ['$scope', '$http', function ($scope, $http) {
+            $scope.pokemon = {};
+
+            $scope.getPokemon = function () {
+                $http({
+                    url: 'https://pokeapi.co/api/v2/pokemon/ditto',
+                    method: 'GET'
+                }).then(function (response) {
+                    $scope.pokemon = response?.data;
+                });
+            };
+        }]);
+
+    </script>
+
+</head>
+<body ng-app="app">
+
+    <div ng-controller="pokemons-controller">
+        <p>{{ pokemon }}</p>
+        <button ng-click="getPokemon()">Get pokemon</button>
+    </div>
+    
+</body>
+</html>
