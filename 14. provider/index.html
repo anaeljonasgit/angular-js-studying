@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Hello world, AngularJS</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+
+        const app = angular.module('app', []);
+
+        app.provider('pokemonApi', function () {
+            let api_url = '';
+
+            this.setApiUrl = function (url) {
+                api_url = url;
+            };
+
+            this.$get = function () {
+                return {
+                    getApiUrl: function () {
+                        return api_url;
+                    }
+                };
+            };
+        });
+
+        app.config(function (pokemonApiProvider) {
+            pokemonApiProvider.setApiUrl('https://pokeapi.co/api/v2/pokemon');
+        });
+
+        app.controller('app-controller', ['$scope', 'pokemonApi', function ($scope, pokemonApi) {
+            $scope.api_url = pokemonApi.getApiUrl();
+        }]);
+
+    </script>
+
+</head>
+<body ng-app="app">
+
+    <div ng-controller="app-controller">
+        <p>API Url: {{ api_url }}</p>
+    </div>
+    
+</body>
+</html>
