@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Hello world, AngularJS</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+
+        const app = angular.module('app', []);
+
+        app.controller('user-controller', ['$scope', function ($scope) {
+            $scope.name = 'Astronaut';
+        }]);
+
+        app.directive('firstCustomDirective', function () {
+            return {
+                template: '<p>Hello, {{ name }} 1.</p>'
+            };
+        });
+
+        app.directive('secondCustomDirective', function() {
+            return {
+                templateUrl: 'second-custom-directive'
+            };
+        });
+
+        app.directive('thirdCustomDirective', function () {
+            return {
+                templateUrl: 'third-custom-directive.html'
+            };
+        });
+
+    </script>
+
+</head>
+<body ng-app="app">
+
+    <script type="text/ng-template" id="second-custom-directive">
+        <p>Hello, {{ name }} 2.</p>
+    </script>
+
+    <div ng-controller="user-controller">
+        <div first-custom-directive></div>
+        <div second-custom-directive></div>
+        <div third-custom-directive></div>
+    </div>
+    
+</body>
+</html>
