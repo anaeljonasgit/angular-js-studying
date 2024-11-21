@@ -1,0 +1,13 @@
+{
+  "name": "angular-js-studying",
+  "version": "1.0.0",
+  "description": "Repo to study AngularJS.\r - Anael Jonas, Senior Full-Stack Developer\r - LinkedIn: https://www.linkedin.com/in/anaeljonas",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

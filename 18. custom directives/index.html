@@ -18,7 +18,7 @@
 
         app.directive('firstCustomDirective', function () {
             return {
-                template: '<p>Hello, {{ name }} 1.</p>'
+                template: '<p>Hello, {{ name }} 1 (template).</p>'
             };
         });
 
@@ -34,19 +34,30 @@
             };
         });
 
+        app.directive('fourtyCustomDirective', function () {
+            return {
+                templateUrl: 'fourty-custom-directive'
+            };
+        });
+
     </script>
 
 </head>
 <body ng-app="app">
 
     <script type="text/ng-template" id="second-custom-directive">
-        <p>Hello, {{ name }} 2.</p>
+        <p>Hello, {{ name }} 2 (internal html).</p>
+    </script>
+
+    <script type="text/ng-template" id="fourty-custom-directive">
+        <p>Hello, {{ name }} 4 (tag html).</p>
     </script>
 
     <div ng-controller="user-controller">
         <div first-custom-directive></div>
         <div second-custom-directive></div>
         <div third-custom-directive></div>
+        <fourty-custom-directive></fourty-custom-directive>
     </div>
     
 </body>
