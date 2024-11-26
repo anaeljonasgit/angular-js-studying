@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Hello world, AngularJS</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+
+        const app = angular.module('app', []);
+
+        app.controller('messageController', ['$scope', function () {
+
+        }]);
+
+        app.directive('messageDirective', function () {
+            return {
+                compile: function (element, attributes) {
+                    console.log(`${attributes.text} in compile...`);
+
+                    return {
+                        pre: function ($scope, iElement, iAttributes) {
+                            console.log(`${iAttributes.text} in pre...`);
+                        },
+                        post: function ($scope, iElement, iAttributes) {
+                            console.log(`${iAttributes.text} in post...`);
+                        }
+                    }
+                },
+
+                controller: function ($scope, $element, $attrs) {
+                    console.log(`${$attrs.text} in controller (best place to start data)...`);
+                }
+            };
+        });
+
+    </script>
+
+</head>
+<body ng-app="app">
+
+    <div ng-controller="messageController">
+        <div message-directive text="1">
+            <div message-directive text="...2">
+                <div message-directive text="......3"></div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
